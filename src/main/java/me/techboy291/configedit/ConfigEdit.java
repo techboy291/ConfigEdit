@@ -109,11 +109,7 @@ public class ConfigEdit extends JavaPlugin implements Listener {
 					value = new ArrayList<>(Arrays.asList(values));
 				}
 			} else {
-				try {
-					value = Double.parseDouble(pair[1]);
-				} catch (NumberFormatException e) {
-					value = pair[1];
-				}
+				value = pair[1];
 			}
 			
 			config.set(pair[0], value);
