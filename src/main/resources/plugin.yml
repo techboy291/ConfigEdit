@@ -1,0 +1,10 @@
+name: ${plugin.name}
+main: ${plugin.mainClass}
+version: ${project.version}
+description: ${plugin.description}
+commands:
+  edit:
+    description: Edits the config in the specified plugin's directory.
+    usage: /<command> <plugin> <key:value> [file]
+    permission: ${plugin.name}.command
+    aliases: e
