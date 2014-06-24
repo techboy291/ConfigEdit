@@ -89,6 +89,7 @@ public class ConfigEdit extends JavaPlugin implements Listener {
 
 			if (values.length > 1) {
 				if (values[0].startsWith("+")) {
+					values[0] = values[0].substring(1);
 					List<String> existing = this
 							.getConfigList(pair[0],
 									config);
@@ -99,6 +100,7 @@ public class ConfigEdit extends JavaPlugin implements Listener {
 
 					value = existing;
 				} else if (values[0].startsWith("-")) {
+					values[0] = values[0].substring(1);
 					List<String> existing = this
 							.getConfigList(pair[0],
 									config);
