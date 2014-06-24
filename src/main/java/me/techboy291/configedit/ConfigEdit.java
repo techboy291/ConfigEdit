@@ -59,7 +59,7 @@ public class ConfigEdit extends JavaPlugin implements Listener {
 			else {
 				if (!args[2].endsWith(".yml"))
 					args[2] = args[2] + ".yml";
-				
+
 				file = new File(plugin.getDataFolder(), args[2]);
 			}
 
@@ -83,35 +83,39 @@ public class ConfigEdit extends JavaPlugin implements Listener {
 						+ "Invalid key-value pair format: must be 'key:value'.");
 				return true;
 			}
-			
+
 			Object value;
 			String[] values = pair[1].split(",");
-			
+
 			if (values.length > 1) {
 				if (values[0].startsWith("+")) {
-					List<String> existing = this.getConfigList(pair[0], config);
-					
+					List<String> existing = this
+							.getConfigList(pair[0],
+									config);
+
 					for (String v : values) {
-						if (!existing.contains(v))
-							existing.add(v);
+						existing.add(v);
 					}
-					
+
 					value = existing;
 				} else if (values[0].startsWith("-")) {
-					List<String> existing = this.getConfigList(pair[0], config);
-					
+					List<String> existing = this
+							.getConfigList(pair[0],
+									config);
+
 					for (String v : values) {
 						existing.remove(v);
 					}
-					
+
 					value = existing;
 				} else {
-					value = new ArrayList<>(Arrays.asList(values));
+					value = new ArrayList<>(
+							Arrays.asList(values));
 				}
 			} else {
 				value = pair[1];
 			}
-			
+
 			config.set(pair[0], value);
 
 			try {
@@ -121,15 +125,16 @@ public class ConfigEdit extends JavaPlugin implements Listener {
 						+ "Config file could not be saved.");
 				e.printStackTrace();
 			}
-			
-			sender.sendMessage(ChatColor.GOLD + "Configuration file has been edited successfully!");
+
+			sender.sendMessage(ChatColor.GOLD
+					+ "Configuration file has been edited successfully!");
 
 			return true;
 		}
 
 		return false;
 	}
-	
+
 	public List<String> getConfigList(String key, YamlConfiguration config)
 	{
 		if (config.isList(key))
