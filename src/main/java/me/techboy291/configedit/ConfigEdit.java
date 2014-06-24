@@ -114,6 +114,8 @@ public class ConfigEdit extends JavaPlugin implements Listener {
 					value = new ArrayList<>(
 							Arrays.asList(values));
 				}
+			} else if (pair[1].equalsIgnoreCase("null")) {
+				value = null;
 			} else {
 				value = pair[1];
 			}
