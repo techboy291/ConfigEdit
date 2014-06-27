@@ -26,6 +26,7 @@ public class ConfigEdit extends JavaPlugin implements Listener {
 			MetricsLite metrics = new MetricsLite(this);
 			metrics.start();
 		} catch (IOException e) {
+			this.getLogger().log(Level.INFO, "Failed to submit plugin metrics.");
 		}
 
 		this.getLogger().log(
@@ -87,7 +88,7 @@ public class ConfigEdit extends JavaPlugin implements Listener {
 				} catch (IOException e) {
 					sender.sendMessage(ChatColor.RED
 							+ "Configuration file could not be created.");
-					e.printStackTrace();
+					return true;
 				}
 			}
 
