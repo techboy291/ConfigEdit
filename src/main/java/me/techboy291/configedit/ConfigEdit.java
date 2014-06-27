@@ -20,6 +20,7 @@ public class ConfigEdit extends JavaPlugin implements Listener {
 	public void onEnable()
 	{
 		this.getServer().getPluginManager().registerEvents(this, this);
+
 		this.getLogger().log(
 				Level.INFO,
 				"v" + this.getDescription().getVersion()
@@ -42,25 +43,37 @@ public class ConfigEdit extends JavaPlugin implements Listener {
 		if (cmd.getName().equalsIgnoreCase("edit")
 				&& (args.length == 2 || args.length == 3)) {
 
-			Plugin plugin = this.getServer().getPluginManager()
-					.getPlugin(args[0]);
+			File folder;
 
-			if (plugin == null) {
-				sender.sendMessage(ChatColor.RED
-						+ "Plugin does not exist.");
-				return true;
+			if (args[0].startsWith(":")) {
+				folder = new File(args[0].substring(1));
+			} else {
+				Plugin plugin = this.getServer()
+						.getPluginManager()
+						.getPlugin(args[0]);
+
+				if (plugin == null) {
+					sender.sendMessage(ChatColor.RED
+							+ "Plugin does not exist.");
+					return true;
+				}
+
+				folder = plugin.getDataFolder();
 			}
+			
+			if (!folder.exists())
+				folder.mkdir();
 
 			File file;
 
-			if (args.length == 2)
-				file = new File(plugin.getDataFolder(),
+			if (args.length == 2) {
+				file = new File(folder,
 						"config.yml");
-			else {
+			} else {
 				if (!args[2].endsWith(".yml"))
 					args[2] = args[2] + ".yml";
 
-				file = new File(plugin.getDataFolder(), args[2]);
+				file = new File(folder, args[2]);
 			}
 
 			if (!file.exists()) {
