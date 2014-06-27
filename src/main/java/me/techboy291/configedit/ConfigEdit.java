@@ -48,7 +48,7 @@ public class ConfigEdit extends JavaPlugin implements Listener {
 	public boolean onCommand(CommandSender sender, Command cmd,
 			String label, String[] args)
 	{
-		if (cmd.getName().equalsIgnoreCase("edit")
+		if (cmd.getName().equalsIgnoreCase("configedit")
 				&& (args.length == 2 || args.length == 3)) {
 
 			File folder;
