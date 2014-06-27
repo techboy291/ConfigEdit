@@ -14,12 +14,19 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.mcstats.MetricsLite;
 
 public class ConfigEdit extends JavaPlugin implements Listener {
 	@Override
 	public void onEnable()
 	{
 		this.getServer().getPluginManager().registerEvents(this, this);
+
+		try {
+			MetricsLite metrics = new MetricsLite(this);
+			metrics.start();
+		} catch (IOException e) {
+		}
 
 		this.getLogger().log(
 				Level.INFO,
@@ -60,15 +67,13 @@ public class ConfigEdit extends JavaPlugin implements Listener {
 
 				folder = plugin.getDataFolder();
 			}
-			
-			if (!folder.exists())
-				folder.mkdir();
+
+			if (!folder.exists()) folder.mkdir();
 
 			File file;
 
 			if (args.length == 2) {
-				file = new File(folder,
-						"config.yml");
+				file = new File(folder, "config.yml");
 			} else {
 				if (!args[2].endsWith(".yml"))
 					args[2] = args[2] + ".yml";
