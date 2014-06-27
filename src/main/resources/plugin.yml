@@ -3,8 +3,8 @@ main: ${plugin.mainClass}
 version: ${project.version}
 description: ${plugin.description}
 commands:
-  edit:
+  configedit:
     description: Edits the config in the specified plugin's directory.
     usage: /<command> <plugin|:folder-path> <key:value> [file]
     permission: ${plugin.name}.command
-    aliases: e
+    aliases: [edit, ce, e]
