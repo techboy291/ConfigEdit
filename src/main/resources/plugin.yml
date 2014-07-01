@@ -7,4 +7,4 @@ commands:
     description: Edits the config in the specified plugin's directory.
     usage: /<command> <plugin|:folder-path> <key:value> [file]
     permission: ${plugin.name}.command
-    aliases: [edit, ce, e]
+    aliases: [edit, ce]
