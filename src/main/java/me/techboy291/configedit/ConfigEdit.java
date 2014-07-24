@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -26,11 +25,10 @@ public class ConfigEdit extends JavaPlugin implements Listener {
 			MetricsLite metrics = new MetricsLite(this);
 			metrics.start();
 		} catch (IOException e) {
-			this.getLogger().log(Level.INFO, "Failed to submit plugin metrics.");
+			this.getLogger().warning("Failed to submit plugin metrics.");
 		}
 
-		this.getLogger().log(
-				Level.INFO,
+		this.getLogger().info(
 				"v" + this.getDescription().getVersion()
 						+ " is now enabled.");
 	}
@@ -38,8 +36,7 @@ public class ConfigEdit extends JavaPlugin implements Listener {
 	@Override
 	public void onDisable()
 	{
-		this.getLogger().log(
-				Level.INFO,
+		this.getLogger().info(
 				"v" + this.getDescription().getVersion()
 						+ " is now disabled.");
 	}
